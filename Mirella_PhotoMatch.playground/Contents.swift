@@ -8,33 +8,58 @@ import AVFoundation
 class TelaInicial: UIViewController {
     override func loadView() {
         let view = UIView()
-        view.backgroundColor = .white
+        let bgColor = UIColor(red: 255, green: 252, blue: 249, alpha: 1)
+        view.backgroundColor = bgColor
         
+        //bg offwhite
+        let imgBgPadrao = UIImage(named: "fundotela_padrao")
+        let bgPadrao = UIImageView(image: imgBgPadrao)
+        bgPadrao.frame = CGRect(x: 0, y: 0, width: 1024, height: 768)
         
-        let titulo = UILabel()
-        titulo.frame = CGRect(x: 90, y: 150, width: 200, height: 40)
-        titulo.text = "PhotoMatch!"
-        titulo.textAlignment = .center
-        titulo.textColor = .darkGray
-        titulo.highlightedTextColor = .cyan
+        //frame bg
+        let imgFrameRed = UIImage(named: "frame_bg")
+        let frameRed = UIImageView(image: imgFrameRed)
+        frameRed.frame = CGRect(x: 37, y: 37, width: 949, height: 690)
         
-        let botaoComoJogar = UIButton()
-        botaoComoJogar.frame = CGRect(x: 120, y:450, width: 150, height: 40)
-        botaoComoJogar.layer.cornerRadius = 15
-        botaoComoJogar.setTitle("Como jogar", for: .normal)
-        botaoComoJogar.backgroundColor = .systemTeal
-        botaoComoJogar.setTitleColor(.white, for: .normal)
-        botaoComoJogar.setTitleShadowColor(.systemGray2, for: .normal)
-        botaoComoJogar.addTarget(nil, action: #selector(tocouBotaoTutorial), for: .touchUpInside)
+        //logo FotoLab
+        let imgLogoFotoLab = UIImage(named: "Logo_FotoLab")
+        let logoFotoLab = UIImageView (image: imgLogoFotoLab)
+        logoFotoLab.frame = CGRect(x: 300, y: 100, width: 445, height: 317)
         
-        view.addSubview(titulo)
-        view.addSubview(botaoComoJogar)
+        //botão sobre
+        let imgBotaoSobre = UIImage(named: "botao_sobre")
+        let botaoSobre = UIButton()
+        botaoSobre.setImage(imgBotaoSobre, for: .normal)
+        botaoSobre.frame = CGRect(x: 380, y:450, width: 250, height: 75)
+        botaoSobre.layer.cornerRadius = 15
+        botaoSobre.setTitle("Sobre", for: .normal)
+        botaoSobre.addTarget(nil, action: #selector(tocouBotaoSobre), for: .touchUpInside)
+        
+        //botão iniciar
+        let imgBotaoIniciar = UIImage(named: "botao_iniciar")
+        let botaoIniciar = UIButton()
+        botaoIniciar.setImage(imgBotaoIniciar, for: .normal)
+        botaoIniciar.frame = CGRect(x: 380, y: 550, width: 250, height: 75)
+        botaoIniciar.layer.cornerRadius = 15
+        botaoIniciar.setTitle("Iniciar", for: .normal)
+        botaoIniciar.addTarget(nil, action: #selector(tocouBotaoIniciar), for: .touchUpInside)
+        
+        view.addSubview(bgPadrao)
+        view.addSubview(logoFotoLab)
+        view.addSubview(botaoSobre)
+        view.addSubview(botaoIniciar)
+        view.addSubview(frameRed)
         self.view = view
     }
     
-    @IBAction func tocouBotaoTutorial() {
+    @IBAction func tocouBotaoSobre() {
         navigationController?.pushViewController(telaDeTutorial, animated: true)
-        print("Chamou tutorial")
+        print("Chamou sobre")
+    }
+    
+    @IBAction func tocouBotaoIniciar() {
+        navigationController?.pushViewController(telaDaCamera, animated: true)
+        print("Chamou sobre")
     }
     
 }
@@ -42,18 +67,25 @@ class TelaInicial: UIViewController {
 class TelaDeTutorial: UIViewController {
     override func loadView() {
         let view = UIView()
-        view.backgroundColor = .systemGray
+        let bgColor = UIColor(red: 255, green: 252, blue: 249, alpha: 1)
+        view.backgroundColor = bgColor
         
-        let botaoInicio = UIButton()
-        botaoInicio.frame = CGRect(x: 120, y:450, width: 150, height: 40)
-        botaoInicio.layer.cornerRadius = 15
-        botaoInicio.setTitle("Começar!", for: .normal)
-        botaoInicio.backgroundColor = .systemTeal
-        botaoInicio.setTitleColor(.white, for: .normal)
-        botaoInicio.setTitleShadowColor(.systemGray2, for: .normal)
-        botaoInicio.addTarget(nil, action: #selector(tocouBotaoInicio), for: .touchUpInside)
+        //background provisório
+        let imgBgSobre = UIImage(named: "iPad mini - 2")
+        let bgSobre = UIImageView(image: imgBgSobre)
+        bgSobre.frame = CGRect(x: 0, y: 0, width: 1024, height: 768)
         
-        view.addSubview(botaoInicio)
+        //botao início
+        let imgBotaoIniciar = UIImage(named: "botao_iniciar")
+        let botaoIniciar = UIButton()
+        botaoIniciar.setImage(imgBotaoIniciar, for: .normal)
+        botaoIniciar.frame = CGRect(x: 380, y: 550, width: 250, height: 75)
+        botaoIniciar.layer.cornerRadius = 15
+        botaoIniciar.setTitle("Iniciar", for: .normal)
+        botaoIniciar.addTarget(nil, action: #selector(tocouBotaoInicio), for: .touchUpInside)
+        
+        view.addSubview(botaoIniciar)
+        view.addSubview(bgSobre)
         self.view = view
     }
     
@@ -68,45 +100,160 @@ class TelaDaCamera: UIViewController {
     
     override func loadView() {
         let view = UIView()
-        view.backgroundColor = .white
+        let bgColor = UIColor(red: 255, green: 252, blue: 249, alpha: 1)
+        view.backgroundColor = bgColor
         
-        //imagem menor de referência
-        let frameImagemRef = UIImage(named: "frame_foto de referência")!
-        let referência = UIImageView(image: frameImagemRef)
-        referência.frame = CGRect (x: 80, y: 50, width: 317, height: 220)
+        //bg offwhite
+        let imgBgPadrao = UIImage(named: "fundotela_padrao")
+        let bgPadrao = UIImageView(image: imgBgPadrao)
+        bgPadrao.frame = CGRect(x: 0, y: 0, width: 1024, height: 768)
         
-        //imagem e descrição do filme Fujicolor C200
-        let imagemFujicolorC200 = UIImage(named: "FUJICOLOR C200_BOTÃO")!
-        let filmeFujicolorC200 = UIImageView (image: imagemFujicolorC200)
-        filmeFujicolorC200.frame = CGRect ( x: -40, y: 280, width: 443, height: 570)
-        
-        //imagem e descrição do filme ColorPlus 200
-        let imagemColorPlus200 = UIImage(named: "KODAK COLORPLUS 200_BOTÃO")!
-        let filmeColorPlus200 = UIImageView (image: imagemColorPlus200)
-        filmeColorPlus200.frame = CGRect ( x: -40, y: 280, width: 443, height: 570)
-        
-        //botao de disparo
-        let imagemBotaoDisparo = UIImage (named: "BOTÃO DISPARO")!
-        let botaoDisparo = UIButton()
-        botaoDisparo.frame = CGRect (x: 830, y: 570, width: 180, height: 180)
-        botaoDisparo.setBackgroundImage(imagemBotaoDisparo, for: .normal)
+        //frame vermelho foto
+        let imgFrameRed = UIImage(named: "frame_bg")
+        let frameRed = UIImageView(image: imgFrameRed)
+        frameRed.frame = CGRect(x: 63, y: 153, width: 574, height: 410)
         
         //imagem base
-        let arquivoImagemBase = UIImage (named: "Imagem_Base")!
+        let arquivoImagemBase = UIImage(named: "frame_foto de referência")!
         let imagemBase = UIImageView (image: arquivoImagemBase)
-        imagemBase.frame = CGRect (x: 400, y: 80, width: 530, height: 351)
-        imagemBase.image = arquivoImagemBase.addFilter(filter: .Mono)
+        imagemBase.frame = CGRect (x: 80, y: 170, width: 540, height: 374.51)
+        imagemBase.image = arquivoImagemBase.addFilter(filter: .Transfer)
         
+        //descrição demonstrativa
+        let imgDescDemo = UIImage(named: "descrição_demo")
+        let descricaoDemo = UIImageView(image: imgDescDemo)
+        descricaoDemo.frame = CGRect(x: 690, y: 140, width: 334, height: 462)
+        
+        //área dos botoes
+        let imgFundoBotoes = UIImage(named: "fundo_botaofilme")
+        let fundoBotoes = UIImageView (image: imgFundoBotoes)
+        fundoBotoes.frame = CGRect(x: 710, y: 490, width: 315, height: 276)
+        
+        //representação kodak colorplus
+        let imgFilmeColorplus = UIImage(named: "film_COLORPLUS 200")
+        let filmeColorplus = UIImageView (image: imgFilmeColorplus)
+        filmeColorplus.frame = CGRect(x: 820, y: 570, width: 117.3, height: 160)
+        
+        //botao direito
+        let imgBotaoDireito = UIImage(named: "botao_direita")
+        let botaoDireito = UIButton()
+        botaoDireito.setImage(imgBotaoDireito, for: .normal)
+        botaoDireito.frame = CGRect(x: 960, y:640, width: 24, height: 28.8)
+        botaoDireito.layer.cornerRadius = 15
+        botaoDireito.setTitle("Sobre", for: .normal)
+        botaoDireito.addTarget(nil, action: #selector(tocouBotaoDireito), for: .touchUpInside)
+        
+        //botao esquerdo
+        let imgBotaoEsquerdo = UIImage(named: "botao_esquerda")
+        let botaoEsquerdo = UIButton()
+        botaoEsquerdo.setImage(imgBotaoEsquerdo, for: .normal)
+        botaoEsquerdo.frame = CGRect(x: 770, y:640, width: 24, height: 28.8)
+        botaoEsquerdo.layer.cornerRadius = 15
+        botaoEsquerdo.setTitle("Sobre", for: .normal)
+        //botaoEsquerdo.addTarget(nil, action: #selector(tocouBotaoEsquerdo), for: .touchUpInside)
         
         //declarar as views
-        self.view = view
-        view.addSubview(filmeFujicolorC200)
-        view.addSubview(filmeColorPlus200)
-        view.addSubview(referência)
-        view.addSubview(botaoDisparo)
+        view.addSubview(bgPadrao)
         view.addSubview(imagemBase)
+        view.addSubview(descricaoDemo)
+        view.addSubview(fundoBotoes)
+        view.addSubview(botaoDireito)
+        view.addSubview(botaoEsquerdo)
+        view.addSubview(filmeColorplus)
+        self.view = view
     }
-
+    
+    @IBAction func tocouBotaoDireito() {
+        //imagem Fujicolor
+        let arquivoImagemBase = UIImage(named: "frame_foto de referência")!
+        let imagemFujicolor = UIImageView (image: arquivoImagemBase)
+        imagemFujicolor.frame = CGRect (x: 80, y: 170, width: 540, height: 374.51)
+        imagemFujicolor.image = arquivoImagemBase.addFilter(filter: .Instant)
+        
+        //descrição fujicolor
+        let imgDescFujicolor = UIImage(named: "descrição_FUJI")
+        let descricaoFujicolor = UIImageView(image: imgDescFujicolor)
+        descricaoFujicolor.frame = CGRect(x: 690, y: 140, width: 334, height: 462)
+        
+        //área dos botoes
+        let imgFundoBotoes = UIImage(named: "fundo_botaofilme")
+        let fundoBotoes = UIImageView (image: imgFundoBotoes)
+        fundoBotoes.frame = CGRect(x: 710, y: 490, width: 315, height: 276)
+        
+        //representação fujicolor
+        let imgFilmeFujicolor = UIImage(named: "film_FUJICOLOR 200")
+        let filmeFujicolor = UIImageView (image: imgFilmeFujicolor)
+        filmeFujicolor.frame = CGRect(x: 820, y: 570, width: 117.3, height: 160)
+        
+        //botao esquerdo
+        let imgBotaoEsquerdo = UIImage(named: "botao_esquerda")
+        let botaoEsquerdo = UIButton()
+        botaoEsquerdo.setImage(imgBotaoEsquerdo, for: .normal)
+        botaoEsquerdo.frame = CGRect(x: 770, y:640, width: 24, height: 28.8)
+        //botaoEsquerdo.addTarget(nil, action: #selector(tocouBotaoEsquerdo), for: .touchUpInside)
+        
+        //botao direito 2
+        let imgBotaoDireito = UIImage(named: "botao_direita")
+        let botaoDireito = UIButton()
+        botaoDireito.setImage(imgBotaoDireito, for: .normal)
+        botaoDireito.frame = CGRect(x: 960, y:640, width: 24, height: 28.8)
+        botaoDireito.addTarget(nil, action: #selector(tocouBotaoDireito2), for: .touchUpInside)
+        
+        view.addSubview(descricaoFujicolor)
+        view.addSubview(fundoBotoes)
+        view.addSubview(imagemFujicolor)
+        view.addSubview(filmeFujicolor)
+        view.addSubview(botaoDireito)
+        view.addSubview(botaoEsquerdo)
+        
+    }
+    @IBAction func tocouBotaoDireito2() {
+        
+        //descrição hp5
+        let imgDescHp5 = UIImage(named: "descrição_hp5")
+        let descricaoHp5 = UIImageView(image: imgDescHp5)
+        descricaoHp5.frame = CGRect(x: 690, y: 140, width: 334, height: 462)
+        
+        //área dos botoes
+        let imgFundoBotoes = UIImage(named: "fundo_botaofilme")
+        let fundoBotoes = UIImageView (image: imgFundoBotoes)
+        fundoBotoes.frame = CGRect(x: 710, y: 490, width: 315, height: 276)
+        
+        //imagem Ilford
+        let arquivoImagemBase = UIImage(named: "frame_foto de referência")!
+        let imagemIlford = UIImageView (image: arquivoImagemBase)
+        imagemIlford.frame = CGRect (x: 80, y: 170, width: 540, height: 374.51)
+        imagemIlford.image = arquivoImagemBase.addFilter(filter: .Mono)
+        
+        //representação fujicolor
+        let imgFilmeIlford = UIImage(named: "film_ilford400")
+        let filmeIlford = UIImageView (image: imgFilmeIlford)
+        filmeIlford.frame = CGRect(x: 820, y: 570, width: 117.3, height: 160)
+        
+        //botao esquerdo
+        let imgBotaoEsquerdo = UIImage(named: "botao_esquerda")
+        let botaoEsquerdo = UIButton()
+        botaoEsquerdo.setImage(imgBotaoEsquerdo, for: .normal)
+        botaoEsquerdo.frame = CGRect(x: 770, y:640, width: 24, height: 28.8)
+        //botaoEsquerdo.addTarget(nil, action: #selector(tocouBotaoEsquerdo), for: .touchUpInside)
+        
+        //botao direito
+        let imgBotaoDireito = UIImage(named: "botao_direita")
+        let botaoDireito = UIButton()
+        botaoDireito.setImage(imgBotaoDireito, for: .normal)
+        botaoDireito.frame = CGRect(x: 960, y:640, width: 24, height: 28.8)
+        //botaoDireito.addTarget(nil, action: #selector(tocouBotaoDireito), for: .touchUpInside)
+        
+        view.addSubview(descricaoHp5)
+        view.addSubview(fundoBotoes)
+        view.addSubview(botaoDireito)
+        view.addSubview(botaoEsquerdo)
+        view.addSubview(imagemIlford)
+        view.addSubview(filmeIlford)
+        
+    }
+    
+    
 }
 
 //enumerando os filtros
@@ -140,6 +287,8 @@ extension UIImage {
     
 }//fecha extension UIImage
 
+public let arquivoImagemBase = UIImage(named: "frame_foto de referência")!
+public var imagemBase = UIImageView (image: arquivoImagemBase)
 
 let navigation = UINavigationController(screenType: .ipad, isPortrait: false)
 let telaInicial = TelaInicial(screenType: .ipad, isPortrait: false)
@@ -150,90 +299,3 @@ navigation.navigationBar.isHidden =  true
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = navigation.scale(to: 0.5)
 
-
-//Ana - Na primeira tela
-//let navigation = UINavigationController(screenType: .ipad, isPortrait: false) navigation.pushViewController (catalogo, animated: false) navigation.navigationBar.isHidden =  false  PlaygroundPage.current.liveView = navigation.scale(to: 0.7)
-
-//        //ruído (granulação) da imagem
-//        guard
-//            let coloredNoise = CIFilter(name:"CIRandomGenerator"),
-//            let noiseImage = coloredNoise.outputImage
-//            else {
-//                return self
-//        }
-//        let whitenVector = CIVector(x: 0, y: 1, z: 0, w: 0)
-//        let fineGrain = CIVector(x:0, y:0.005, z:0, w:0)
-//        let zeroVector = CIVector(x: 0, y: 0, z: 0, w: 0)
-//        guard
-//            let whiteningFilter = CIFilter(name:"CIColorMatrix",
-//                                           parameters:
-//            [
-//                kCIInputImageKey: noiseImage,
-//                "inputRVector": whitenVector,
-//                "inputGVector": whitenVector,
-//                "inputBVector": whitenVector,
-//                "inputAVector": fineGrain,
-//                "inputBiasVector": zeroVector
-//            ]),
-//            let whiteSpecks = whiteningFilter.outputImage
-//            else {
-//                return self
-//        }
-//        guard
-//            let speckCompositor = CIFilter(name:"CISourceOverCompositing",
-//                                           parameters:
-//            [
-//                kCIInputImageKey: whiteSpecks,
-//                kCIInputBackgroundImageKey: ciOutput!
-//            ]),
-//            let speckledImage = speckCompositor.outputImage
-//            else {
-//                return self
-//        }
-//
-//
-//        //scratchy analog film
-//        let verticalScale = CGAffineTransform(scaleX: 1.5, y: 25)
-//        let transformedNoise = noiseImage.transformed(by: verticalScale)
-//
-//        let darkenVector = CIVector(x: 4, y: 0, z: 0, w: 0)
-//        let darkenBias = CIVector(x: 0, y: 1, z: 1, w: 1)
-//
-//        guard
-//            let darkeningFilter = CIFilter(name:"CIColorMatrix",
-//                                           parameters:
-//            [
-//                kCIInputImageKey: transformedNoise,
-//                "inputRVector": darkenVector,
-//                "inputGVector": zeroVector,
-//                "inputBVector": zeroVector,
-//                "inputAVector": zeroVector,
-//                "inputBiasVector": darkenBias
-//            ]),
-//            let randomScratches = darkeningFilter.outputImage
-//            else {
-//                return self
-//        }
-//
-//        guard
-//            let grayscaleFilter = CIFilter(name:"CIMinimumComponent",
-//                                           parameters:
-//            [
-//                kCIInputImageKey: randomScratches
-//            ]),
-//            let darkScratches = grayscaleFilter.outputImage
-//            else {
-//                return self
-//        }
-//        guard
-//            let oldFilmCompositor = CIFilter(name:"CIMultiplyCompositing",
-//                                             parameters:
-//            [
-//                kCIInputImageKey: darkScratches,
-//                kCIInputBackgroundImageKey: speckledImage
-//            ]),
-//            let oldFilmImage = oldFilmCompositor.outputImage
-//            else {
-//                return self
-//        }
-//        let finalImage = oldFilmImage.cropped(to: ciInput!.extent)
